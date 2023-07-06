@@ -3,17 +3,16 @@ from flask import Flask, render_template, flash, request, redirect
 import os
 from werkzeug.utils import secure_filename
 from detect import run
-from utils import ALLOWED_EXTENSIONS, allowed_file
 import uuid
 import yaml
 from loguru import logger
 
-import boto3
-import json 
-s3_client = boto3.client("s3")
-with open('config.json') as f:
-    config = json.load(f)
-bucket_name = config['img_bucket']
+# import boto3
+# import json 
+# s3_client = boto3.client("s3")
+# with open('config.json') as f:
+#     config = json.load(f)
+# bucket_name = config['img_bucket']
 
 
 with open("data/coco128.yaml", "r") as stream:
@@ -21,10 +20,15 @@ with open("data/coco128.yaml", "r") as stream:
 
 logger.info(f'yolo5 is up, supported classes are:\n\n{names}')
 
-logger.info(f'supported files are: {ALLOWED_EXTENSIONS}')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 
-app = Flask(_name_, static_url_path='')
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+app = Flask(__name__, static_url_path='')
 UPLOAD_FOLDER = 'data/images'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -62,8 +66,8 @@ def upload_file_api():
         # TODO upload client original img (p) and predicted img (pred_result_img) to S3 using boto3
         #  reference: https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-uploading-files.html
 
-        s3_client.upload_file(str(p), bucket_name, str(p))
-        s3_client.upload_file(str(pred_result_img), bucket_name, str(pred_result_img))
+        # s3_client.upload_file(str(p), bucket_name, str(p))
+        # s3_client.upload_file(str(pred_result_img), bucket_name, str(pred_result_img))
 
         labels = []
         if pred_result_path.exists():
