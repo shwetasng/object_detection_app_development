@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: frontend
+    image: shwetasng/frontend:v1.0
+    networks:
+      - object-detection
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongodb
+      - yolo5
+
+  yolo5:
+    container_name: yolo5
+    networks:
+      - object-detection
+    image: shwetasng/yolo5:v1.0
+    ports:
+      - "8081:8081"
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+
+    networks:
+      - object-detection
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+
+  telegram-bot:
+    container_name: telegram-bot
+    image: shwetasng/polybot:v1.0
+
+    networks:
+      - object-detection
+    depends_on:
+      - yolo5
+
+
+volumes:
+  mongodb:
+    driver: local
+
+networks:
+  object-detection:
+    name: object-detection
+    driver: bridge
