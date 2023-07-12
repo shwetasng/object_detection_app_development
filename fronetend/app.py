@@ -9,8 +9,8 @@ from pymongo import MongoClient, DESCENDING
 
 app = Flask(__name__, static_url_path='')
 
-YOLO_URL = 'http://localhost:8081'
-MONGO_URL = 'mongodb://localhost:27017'
+YOLO_URL = 'http://yolo5-service.shweta-ns.svc.cluster.local:8081'
+MONGO_URL = 'mongodb://mongo.shweta-ns.svc.cluster.local:27017'
 
 
 @app.route('/', methods=['POST'])

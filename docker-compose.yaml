@@ -3,7 +3,7 @@ version: '3.8'
 services:
   frontend:
     container_name: frontend
-    image: shwetasng/frontend:v1.0
+    image: shwetasng/frontend:v3.0
     networks:
       - object-detection
     ports:
@@ -34,7 +34,7 @@ services:
 
   telegram-bot:
     container_name: telegram-bot
-    image: shwetasng/polybot:v1.0
+    image: shwetasng/polybot:v2.0
 
     networks:
       - object-detection
