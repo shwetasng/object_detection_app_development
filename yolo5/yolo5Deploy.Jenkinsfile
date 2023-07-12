@@ -2,7 +2,7 @@ pipeline {
      agent any
 
     parameters { 
-        string(name: '854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins:0.0.4', defaultValue: '', description: '')
+        string(name: '854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins:0.0.5', defaultValue: '', description: '')
          }
     
     environment {
@@ -30,7 +30,7 @@ pipeline {
         stage('Deploying on k8s') {
             steps {
                    sh '''
-                        cd "K8s-manifest-files"
+                        cd "../K8s-manifest-files"
                         kubectl apply -f ${MANIFEST_FILE}
                    '''
             }
