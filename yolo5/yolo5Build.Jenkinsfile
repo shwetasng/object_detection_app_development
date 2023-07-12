@@ -32,7 +32,7 @@ pipeline {
        stage('TRIGGER deploy') {
     steps {
         build job: 'Yolo5DeployFinal', wait: false, parameters: [
-            string(name: '854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins-yolo5:0.0.1', value: "854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins-yolo5:0.0.${BUILD_NUMBER}")
+            string(name: '854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins-yolo5:0.0.2', value: "854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins-yolo5:0.0.${BUILD_NUMBER}")
         ]
     }
 }
