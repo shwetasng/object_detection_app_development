@@ -29,12 +29,12 @@ pipeline {
             }
         }
 
-//        stage('TRIGGER deploy') {
-//     steps {
-//         build job: 'Yolo5Deploy', wait: false, parameters: [
-//             string(name: '854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins:0.0.8', value: "854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins:0.0.${BUILD_NUMBER}")
-//         ]
-//     }
-// }
+       stage('TRIGGER deploy') {
+    steps {
+        build job: 'Yolo5DeployFinal', wait: false, parameters: [
+            string(name: '854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins-yolo5:0.0.1', value: "854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins-yolo5:0.0.${BUILD_NUMBER}")
+        ]
+    }
+}
     }
 }
