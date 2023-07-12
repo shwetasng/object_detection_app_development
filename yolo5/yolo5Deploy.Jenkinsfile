@@ -1,14 +1,8 @@
 pipeline {
-    // agent {
-    // docker {
-    //         // label 'jenkins_agent'
-    //         image '854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins-yolo5:0.0.2'
-    //         args  '--user root -v /var/run/docker.sock:/var/run/docker.sock'
-    //     }
-    // }
+     agent any
 
     parameters { 
-        string(name: '854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins:0.0.3', defaultValue: '', description: '')
+        string(name: '854171615125.dkr.ecr.us-east-2.amazonaws.com/shweta-jenkins:0.0.4', defaultValue: '', description: '')
          }
     
     environment {
