@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: yolo5
-          image: shwetasng/yolo5:v1.0
+          image: shwetasng/yolo5:v2.0
           resources:
             requests:
               cpu: 500m
